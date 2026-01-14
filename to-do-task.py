@@ -22,6 +22,19 @@ CREATE TABLE IF NOT EXISTS tasks (
 """)
 conn.commit()
 
+# CRUD Operations beginning
+def add_task():
+    task = task_entry.get()
+    if task == "":
+        messagebox.showwarning("Input Error", "Task cannot be empty")
+        return
+    cursor.execute("INSERT INTO tasks (title, status) VALUES (?, ?)", (task, "Pending"))
+    conn.commit()
+    task_entry.delete(0, tk.END)
+    view_tasks()
+
+
+
 
 
 
