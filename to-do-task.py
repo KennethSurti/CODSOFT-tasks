@@ -84,6 +84,61 @@ def mark_completed():
     conn.commit()
     load_tasks()
 
+#deletion of tasks
+
+def delete_task():
+    task_id = get_selected_task_id()
+    if not task_id:
+        messagebox.showwarning("Selection Error", "Select a task line")
+        return
+
+    cursor.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+    conn.commit()
+    load_tasks()    
+
+# UI LAYOUT
+
+
+title_label = ctk.CTkLabel(
+    app,
+    text="📝 To-Do List",
+    font=("Segoe UI", 26, "bold")
+)
+title_label.pack(pady=15)
+
+task_entry = ctk.CTkEntry(
+    app,
+    width=400,
+    height=40,
+    placeholder_text="Enter a new task..."
+)
+task_entry.pack(pady=10)
+
+button_frame = ctk.CTkFrame(app, fg_color="transparent")
+button_frame.pack(pady=10)
+
+ctk.CTkButton(
+    button_frame,
+    text="Add Task",
+    width=120,
+    command=add_task
+).grid(row=0, column=0, padx=10)
+
+ctk.CTkButton(
+    button_frame,
+    text="Mark Completed",
+    width=120,
+    command=mark_completed
+).grid(row=0, column=1, padx=10)
+
+ctk.CTkButton(
+    button_frame,
+    text="Delete Task",
+    width=120,
+    fg_color="#b52b2b",
+    hover_color="#8f1f1f",
+    command=delete_task
+).grid(row=0, column=2, padx=10)
 #Priority Levels: Add a dropdown to mark tasks as Low, Medium, or High priority.
 
 #Due Dates: Use a calendar widget to set deadlines.
