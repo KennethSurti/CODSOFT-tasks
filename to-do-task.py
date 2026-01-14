@@ -37,6 +37,16 @@ app.resizable(False, False)
 
 #CRUD operations
 
+def load_tasks():
+    task_list.delete("1.0", "end")
+    cursor.execute("SELECT * FROM tasks")
+    for task in cursor.fetchall():
+        task_list.insert(
+            "end",
+            f"{task[0]}. {task[1]}  [{task[2]}]\n"
+        )
+
+
 def add_task():
     title = task_entry.get().strip()
     if not title:
