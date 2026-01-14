@@ -130,6 +130,8 @@ ctk.CTkButton(
     button_frame,
     text="Mark Completed",
     width=120,
+    fg_color="#008000",
+    hover_color="#008000",
     command=mark_completed
 ).grid(row=0, column=1, padx=10)
 
