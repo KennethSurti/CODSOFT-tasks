@@ -9,6 +9,19 @@ import tkinter as tk
 from tkinter import messagebox
 import sqlite3
 
+# The datatbase info for sqlite3
+conn = sqlite3.connect("todo.db")
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    status TEXT NOT NULL
+)
+""")
+conn.commit()
+
 
 
 
