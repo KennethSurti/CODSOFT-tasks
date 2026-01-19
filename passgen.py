@@ -72,7 +72,6 @@ def generate_password():
         characters += string.punctuation
 
 #Exceptions and result review 
-
     if characters == "":
         messagebox.showwarning("Selection Error", "Select at least one complexity option")
         return
@@ -85,7 +84,7 @@ def generate_password():
     result_entry.configure(state="readonly")
 
 
-#result decleration and buttons
+#result declaration and buttons
 
 ctk.CTkButton(
     app,
