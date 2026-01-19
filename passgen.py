@@ -70,3 +70,14 @@ def generate_password():
         characters += string.digits
     if symbols_var.get():
         characters += string.punctuation
+
+    if characters == "":
+        messagebox.showwarning("Selection Error", "Select at least one complexity option")
+        return
+
+    password = ''.join(random.choice(characters) for _ in range(length))
+
+    result_entry.configure(state="normal")
+    result_entry.delete(0, "end")
+    result_entry.insert(0, password)
+    result_entry.configure(state="readonly")
